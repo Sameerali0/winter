@@ -23,3 +23,13 @@
     bottom: 50px;
     left: 100px;
 }
+
+#yeti{
+
+    position: absolute;
+    width: auto;
+    height: 200px;
+    bottom: 50px;
+    left: 0px;
+
+}
