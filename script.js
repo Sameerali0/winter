@@ -7,6 +7,7 @@ let yetiX= 0
 let playerSpeed=3
 let yetiSpeed= 2.5
 let isMoving= false
+let gameOver= false
 
 document.addEventListener("keydown", (e)=>{
 
@@ -27,7 +28,11 @@ document.addEventListener("keyup", (e)=>{
 
 
 function game(){
-    
+
+    if(gameOver){
+
+        return
+    }
 
     if(isMoving){
 
@@ -40,9 +45,22 @@ function game(){
 
         yetiX += yetiSpeed
 
+    }else{
+
+        yetiX += yetiSpeed * 2
     }
+    
 
     yeti.style.left= yetiX + "px"
+
+
+    if(yetiX + 50 >= playerX){
+
+        gameOver= true
+
+        alert("Yeti Catch You Game Over!")
+
+    }
 
 
     requestAnimationFrame(game);
