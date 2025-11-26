@@ -14,3 +14,12 @@
 
 }
 
+
+#player{
+
+    position: absolute;
+    width: auto;
+    height: 120px;
+    bottom: 50px;
+    left: 100px;
+}
