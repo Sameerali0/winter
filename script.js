@@ -43,7 +43,7 @@ function game(){
         playerX +=playerSpeed
     }
 
-    player.style.left= "100px"
+    player.style.left= playerX + "px";
 
     if(gameStarted){
         if(isMoving){
@@ -57,8 +57,9 @@ function game(){
     }
 
 
-    yeti.style.left= (yetiX - playerX + 100) + "px"
+    
     house.style.left= (houseX - playerX + 100) + "px"
+    yeti.style.left= yetiX + "px"
 
     if(yetiX + 50 >= playerX){
 
