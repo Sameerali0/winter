@@ -58,7 +58,7 @@ function game(){
 
 
     
-    house.style.left= (houseX - playerX + 100) + "px"
+    // house.style.left= (houseX - playerX + 100) + "px"
     yeti.style.left= yetiX + "px"
 
     if(yetiX + 50 >= playerX){
