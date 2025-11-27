@@ -33,3 +33,14 @@
     left: 0px;
 
 }
+
+
+#house{
+
+    position: absolute;
+    width: auto;
+    height: 300px;
+    bottom: 5px;
+    left: 1100px;
+
+}

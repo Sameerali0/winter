@@ -1,9 +1,11 @@
 const player= document.getElementById("player")
 const yeti= document.getElementById("yeti")
+const house= document.getElementById("house")
 
 
 let playerX= 100
 let yetiX= 0
+let houseX= 1100
 let playerSpeed=3
 let yetiSpeed= 2.5
 let isMoving= false
@@ -64,6 +66,14 @@ function game(){
 
         alert("Yeti Catch You Game Over!")
 
+    }
+
+
+    if(playerX + 100 >= houseX){
+
+        gameOver = true
+
+        alert("You reached home safely You Win!")
     }
 
 
