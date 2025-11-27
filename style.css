@@ -8,7 +8,8 @@
 #game{
     width: 100vw;
     height: 100vh;
-    background: skyblue;
+    background: url('images/background.jpg') repeat-x;
+    background-size: cover;
     overflow: hidden;
     position: relative;
 
@@ -41,6 +42,8 @@
     width: auto;
     height: 300px;
     bottom: 5px;
-    left: 1100px;
+    left: 2000px;
+    right: 50px;
+
 
 }

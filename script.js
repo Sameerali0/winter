@@ -5,7 +5,7 @@ const house= document.getElementById("house")
 
 let playerX= 100
 let yetiX= 0
-let houseX= 1100
+let houseX= 2000
 let playerSpeed=3
 let yetiSpeed= 2.5
 let isMoving= false
@@ -43,7 +43,7 @@ function game(){
         playerX +=playerSpeed
     }
 
-    player.style.left= playerX +"px"
+    player.style.left= "100px"
 
     if(gameStarted){
         if(isMoving){
@@ -57,8 +57,8 @@ function game(){
     }
 
 
-    yeti.style.left= yetiX + "px"
-
+    yeti.style.left= (yetiX - playerX + 100) + "px"
+    house.style.left= (houseX - playerX + 100) + "px"
 
     if(yetiX + 50 >= playerX){
 
