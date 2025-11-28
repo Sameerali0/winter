@@ -47,3 +47,21 @@
 
 
 }
+
+#rock{
+
+    position: absolute;
+    width: auto;
+    height: 70px;
+    bottom: 5px;
+    left: 500px;
+}
+
+#wood{
+
+    position: absolute;
+    width: auto;
+    height: 70px;
+    bottom: 5px;
+    left: 800px;
+}
