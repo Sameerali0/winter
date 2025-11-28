@@ -15,8 +15,8 @@ let gameStarted= false
 let isJumping= false
 
 
-let jumpSpeed= 20
-let gravity= 0.5
+let jumpSpeed= 12
+let gravity= 0.3
 
 
 let obstacles= []
@@ -68,7 +68,7 @@ document.addEventListener("keydown", (e)=>{
         if(e.key === " " && !isJumping){
 
             isJumping= true
-            jumpSpeed= 18
+            jumpSpeed= 12
 
         }
 })
@@ -133,7 +133,12 @@ function game(){
 
     for(let obs of obstacles){
 
-        if(playerX + 100 >= obs.x){
+
+        let hitX= playerX + 120 >= obs.x && playerX <= obs.x + 50
+
+        let hitY= playerY < 40 
+
+        if(hitX && hitY){
 
             gameOver= true
 
@@ -143,8 +148,7 @@ function game(){
         }
 
     }
-
-
+        
     if(yetiX + 50 >= playerX){
 
         gameOver= true
