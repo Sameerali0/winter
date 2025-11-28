@@ -21,7 +21,7 @@
     position: absolute;
     width: auto;
     height: 120px;
-    bottom: 50px;
+    bottom: 0px;
     left: 100px;
 }
 
@@ -30,7 +30,7 @@
     position: absolute;
     width: auto;
     height: 200px;
-    bottom: 50px;
+    bottom: 0px;
     left: 0px;
 
 }
@@ -41,27 +41,20 @@
     position: absolute;
     width: auto;
     height: 300px;
-    bottom: 5px;
+    bottom: 0px;
     left: 1100px;
     right: 50px;
 
 
 }
 
-#rock{
+
+.obstacle{
+
 
     position: absolute;
     width: auto;
     height: 70px;
-    bottom: 5px;
-    left: 500px;
+    bottom: 0px;
 }
 
-#wood{
-
-    position: absolute;
-    width: auto;
-    height: 70px;
-    bottom: 5px;
-    left: 800px;
-}

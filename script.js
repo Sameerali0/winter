@@ -1,7 +1,7 @@
 const player= document.getElementById("player")
 const yeti= document.getElementById("yeti")
 const house= document.getElementById("house")
-
+const obstaclesDiv= document.getElementById("obstacles")
 
 let playerX= 100
 let yetiX= 0
@@ -11,6 +11,45 @@ let yetiSpeed= 2.5
 let isMoving= false
 let gameOver= false
 let gameStarted= false
+
+
+let obstacles= []
+
+function createObstacles(){
+
+    let totalObstacle = 2
+
+    for(let i= 0; i < totalObstacle; i++){
+
+        let obstacleType= Math.random() < 0.5 ? "rock" : "wood"
+
+
+        let obstacleimg= document.createElement("img")
+        obstacleimg.src= obstacleType === "rock" ? "images/rockObs.png" : "images/woodObs.png"
+        obstacleimg.classList.add("obstacle")
+
+
+        let obstacleX= 400 + i * 350 + Math.random() *150
+
+
+        
+        obstacleimg.style.left= obstacleX + "px"
+
+        obstaclesDiv.appendChild(obstacleimg)
+
+        obstacles.push({type: obstacleType, x: obstacleX, element: obstacleimg})
+
+
+    }
+}
+
+
+createObstacles()
+
+
+houseX= 400 + obstacles.length * 250 + 300
+house.style.left= houseX + "px"
+
 
 document.addEventListener("keydown", (e)=>{
 
@@ -59,6 +98,20 @@ function game(){
 
     
     yeti.style.left= yetiX + "px"
+
+    for(let obs of obstacles){
+
+        if(playerX + 100 >= obs.x){
+
+            gameOver= true
+
+            alert("Obstacle hit! Game Over!")
+
+            return
+        }
+
+    }
+
 
     if(yetiX + 50 >= playerX){
 
