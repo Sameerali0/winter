@@ -4,6 +4,7 @@ const house= document.getElementById("house")
 const obstaclesDiv= document.getElementById("obstacles")
 
 let playerX= 100
+let playerY= 0       
 let yetiX= 0
 let houseX= 1100
 let playerSpeed=3
@@ -11,6 +12,11 @@ let yetiSpeed= 2.5
 let isMoving= false
 let gameOver= false
 let gameStarted= false
+let isJumping= false
+
+
+let jumpSpeed= 20
+let gravity= 0.5
 
 
 let obstacles= []
@@ -58,6 +64,13 @@ document.addEventListener("keydown", (e)=>{
             isMoving=true
             gameStarted= true
         }
+
+        if(e.key === " " && !isJumping){
+
+            isJumping= true
+            jumpSpeed= 18
+
+        }
 })
 
 document.addEventListener("keyup", (e)=>{
@@ -82,7 +95,26 @@ function game(){
         playerX +=playerSpeed
     }
 
-    player.style.left= playerX + "px";
+
+    if(isJumping){
+
+        playerY += jumpSpeed;
+        jumpSpeed -= gravity;
+
+        if(playerY <= 0){
+
+            playerY= 0
+            isJumping= false
+
+        }
+
+    }
+
+
+
+    player.style.left= playerX + "px"
+
+    player.style.bottom= playerY + "px"
 
     if(gameStarted){
         if(isMoving){
