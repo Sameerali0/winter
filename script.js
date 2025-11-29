@@ -3,6 +3,7 @@ const yeti= document.getElementById("yeti")
 const house= document.getElementById("house")
 const obstaclesDiv= document.getElementById("obstacles")
 const endScreen= document.getElementById("end")
+const endResult= document.getElementById("result")
 const endMessage= document.getElementById("message")
 
 let playerX= 100
@@ -59,12 +60,13 @@ houseX= 400 + obstacles.length * 250 + 300
 house.style.left= houseX + "px"
 
 
-function showEndScreen(message){
+function showEndScreen(result, message){
 
-    gameOver = true
+    gameOver= true
 
-    endMessage.textContent = message
-    endScreen.style.display = "flex"
+    endResult.textContent= result
+    endMessage.textContent= message
+    endScreen.style.display= "flex"
 }
 
 
@@ -151,7 +153,7 @@ function game(){
 
         if(hitX && hitY){
 
-            showEndScreen("You hit the obstacle game Over!")
+            showEndScreen("GAME OVER","You hit an obstacle!")
 
             return
         }
@@ -160,14 +162,14 @@ function game(){
         
     if(yetiX + 50 >= playerX){
 
-        showEndScreen("Yeti Caught You")
+        showEndScreen("GAME OVER","Yeti Caught You!")
 
     }
 
 
     if(playerX + 100 >= houseX){
 
-        showEndScreen("You reached home safely You Win!")
+        showEndScreen("YOU WIN","You reached home safely!")
     }
 
 
