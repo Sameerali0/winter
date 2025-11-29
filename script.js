@@ -5,6 +5,7 @@ const obstaclesDiv= document.getElementById("obstacles")
 const endScreen= document.getElementById("end")
 const endResult= document.getElementById("result")
 const endMessage= document.getElementById("message")
+const playAgainBtn= document.getElementById("playAgain")
 
 let playerX= 100
 let playerY= 0       
@@ -175,5 +176,43 @@ function game(){
 
     requestAnimationFrame(game);
 }
+
+function resetGame() {
+
+    playerX= 100
+    playerY= 0
+    yetiX= 0
+    gameOver= false
+    isMoving= false
+    isJumping= false
+    gameStarted= false
+
+    jumpSpeed= 12
+    gravity= 0.3
+
+    player.style.left= playerX + "px"
+    player.style.bottom= playerY + "px"
+    yeti.style.left= yetiX + "px"
+
+    obstacles=[]
+    obstaclesDiv.innerHTML=""
+
+    createObstacles()
+
+    houseX= 400 + obstacles.length * 250 + 300
+    house.style.left= houseX + "px"
+
+    endScreen.style.display="none"
+
+    requestAnimationFrame(game)
+
+    
+}
+
+
+playAgainBtn.addEventListener("click", ()=>{
+
+    resetGame()
+})
 
 game()
