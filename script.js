@@ -180,6 +180,24 @@ function game(){
     requestAnimationFrame(game);
 }
 
+function createSnow() {
+    const snow= document.getElementById("snow")
+
+    const snowFlake= document.createElement("div")
+
+        snowFlake.classList.add("snowflake")
+
+        const snowImg= document.createElement("img")
+        snowImg.src= "images/snow.png"
+        
+        flake.appendChild(snowImg)
+   
+}
+
+
+createSnow()
+
+
 function resetGame() {
 
     playerX= 100
