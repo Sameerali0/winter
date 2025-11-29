@@ -6,6 +6,9 @@ const endScreen= document.getElementById("end")
 const endResult= document.getElementById("result")
 const endMessage= document.getElementById("message")
 const playAgainBtn= document.getElementById("playAgain")
+const startScreen= document.getElementById("start")
+const startBtn= document.getElementById("startBtn")
+
 
 let playerX= 100
 let playerY= 0       
@@ -215,4 +218,10 @@ playAgainBtn.addEventListener("click", ()=>{
     resetGame()
 })
 
-game()
+startBtn.addEventListener("click", ()=>{
+
+    startScreen.style.display="none"
+
+    game()
+})
+
