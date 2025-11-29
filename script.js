@@ -183,14 +183,32 @@ function game(){
 function createSnow() {
     const snow= document.getElementById("snow")
 
-    const snowFlake= document.createElement("div")
+    setInterval(() =>{
 
+        const snowFlake= document.createElement("div")
         snowFlake.classList.add("snowflake")
 
         const snowImg= document.createElement("img")
         snowImg.src= "images/snow.png"
-        
-        flake.appendChild(snowImg)
+
+        snowFlake.appendChild(snowImg)
+
+
+        snowFlake.style.left= Math.random() * 100 +"vw"
+        snowFlake.style.animationDuration= 3 + Math.random() * 5 + "s"
+
+        let snowSize= 5 + Math.random() * 10
+        snowImg.style.width= snowSize +"px"
+        snowImg.style.height= snowSize + "px"
+
+
+        snowFlake.style.opacity= Math.random()
+
+        snow.appendChild(snowFlake)
+
+        setTimeout(()=> snowFlake.remove(), 8000)
+
+    }, 120)
    
 }
 

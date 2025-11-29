@@ -150,3 +150,22 @@
     left: 0;
 
 }
+
+
+.snowflake{
+
+    position: absolute;
+    top: -13px;
+    animation-name: fall;
+    animation-timing-function: linear;
+
+}
+
+
+@keyframes fall{
+
+    to{
+
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
