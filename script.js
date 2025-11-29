@@ -2,6 +2,8 @@ const player= document.getElementById("player")
 const yeti= document.getElementById("yeti")
 const house= document.getElementById("house")
 const obstaclesDiv= document.getElementById("obstacles")
+const endScreen= document.getElementById("end")
+const endMessage= document.getElementById("message")
 
 let playerX= 100
 let playerY= 0       
@@ -55,6 +57,15 @@ createObstacles()
 
 houseX= 400 + obstacles.length * 250 + 300
 house.style.left= houseX + "px"
+
+
+function showEndScreen(message){
+
+    gameOver = true
+
+    endMessage.textContent = message
+    endScreen.style.display = "flex"
+}
 
 
 document.addEventListener("keydown", (e)=>{
@@ -140,9 +151,7 @@ function game(){
 
         if(hitX && hitY){
 
-            gameOver= true
-
-            alert("Obstacle hit! Game Over!")
+            showEndScreen("You hit the obstacle game Over!")
 
             return
         }
@@ -151,18 +160,14 @@ function game(){
         
     if(yetiX + 50 >= playerX){
 
-        gameOver= true
-
-        alert("Yeti Catch You Game Over!")
+        showEndScreen("Yeti Caught You")
 
     }
 
 
     if(playerX + 100 >= houseX){
 
-        gameOver = true
-
-        alert("You reached home safely You Win!")
+        showEndScreen("You reached home safely You Win!")
     }
 
 
