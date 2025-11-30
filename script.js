@@ -10,6 +10,8 @@ const startScreen= document.getElementById("start")
 const startBtn= document.getElementById("startBtn")
 
 
+const gameOverSound= new Audio("sounds/gameover.mp3")
+
 let playerX= 100
 let playerY= 0       
 let yetiX= 0
@@ -157,6 +159,10 @@ function game(){
 
         if(hitX && hitY){
 
+            gameOverSound.currentTime= 0
+            gameOverSound.play()
+
+
             showEndScreen("GAME OVER","You hit an obstacle!")
 
             return
@@ -166,6 +172,10 @@ function game(){
         
     if(yetiX + 50 >= playerX){
 
+        gameOverSound.currentTime= 0
+        gameOverSound.play()
+
+        
         showEndScreen("GAME OVER","Yeti Caught You!")
 
     }
