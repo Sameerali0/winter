@@ -43,9 +43,6 @@
     width: auto;
     height: 300px;
     bottom: 0px;
-    /* left: 1100px; */
-    right: 50px;
-
 
 }
 
@@ -181,4 +178,15 @@
 
         transform: translateY(110vh) rotate(360deg);
     }
+}
+
+#showLevel{
+
+    position: absolute;
+    top: 5px; 
+    left: 15px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+
 }

@@ -9,6 +9,7 @@ const playAgainBtn= document.getElementById("playAgain")
 const startScreen= document.getElementById("start")
 const startBtn= document.getElementById("startBtn")
 const nextLevelBtn= document.getElementById("nextLvlBtn")
+const showLevel= document.getElementById("showLevel")
 
 
 const gameOverSound= new Audio("sounds/gameover.mp3")
@@ -26,7 +27,7 @@ let playerX= 150
 let playerY= 0       
 let yetiX= 0
 let bgOffset = 0
-let houseX= 1100
+let houseX
 let playerSpeed=3
 let yetiSpeed= 2.5
 let isMoving= false
@@ -78,7 +79,7 @@ function createObstacles(){
 createObstacles()
 
 
-houseX= 400 + obstacles.length * 300 + 300
+houseX= 500 + obstacles.length * 300 + 300
 
 
 function showEndScreen(result, message, isWin= false){
@@ -276,6 +277,8 @@ function resetGame() {
 
     createObstacles()
 
+    showLevel.textContent= "Level: " + level
+
     houseX= 500 + obstacles.length * 300 + 300
 
     endScreen.style.display="none"
@@ -298,8 +301,6 @@ nextLevelBtn.addEventListener("click", ()=>{
 
     winSound.currentTime=0
     winSound.pause()
-
-    level++
 
     resetGame()
 })
