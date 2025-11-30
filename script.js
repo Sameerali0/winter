@@ -10,6 +10,8 @@ const startScreen= document.getElementById("start")
 const startBtn= document.getElementById("startBtn")
 const nextLevelBtn= document.getElementById("nextLvlBtn")
 const showLevel= document.getElementById("showLevel")
+const bgMuteBtn = document.getElementById("bgMuteBtn")
+let isMuted= false
 
 
 const gameOverSound= new Audio("sounds/gameover.mp3")
@@ -269,6 +271,7 @@ function resetGame() {
 
     jumpSpeed=12
 
+    backgroundMusic.muted= isMuted
 
     player.style.left= playerX + "px"
     player.style.bottom= playerY + "px"
@@ -288,6 +291,23 @@ function resetGame() {
     
 }
 
+bgMuteBtn.addEventListener("click", () =>{
+    
+    isMuted= !isMuted
+
+    backgroundMusic.muted= isMuted
+
+    if(isMuted){
+
+        bgMuteBtn.innerHTML= `<i class="fa-solid fa-volume-xmark"></i> off`
+
+    }else{
+
+        bgMuteBtn.innerHTML= `<i class="fa-solid fa-volume-high"></i> on`
+
+    }
+
+})
 
 playAgainBtn.addEventListener("click", ()=>{
 
@@ -310,6 +330,7 @@ startBtn.addEventListener("click", ()=>{
     startScreen.style.display="none"
 
     backgroundMusic.currentTime= 0
+    backgroundMusic.muted= isMuted
     backgroundMusic.play()
 
     game()
