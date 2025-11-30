@@ -11,7 +11,7 @@ const startBtn= document.getElementById("startBtn")
 const nextLevelBtn= document.getElementById("nextLvlBtn")
 const showLevel= document.getElementById("showLevel")
 const bgMuteBtn = document.getElementById("bgMuteBtn")
-let isMuted= false
+const homeBtn= document.getElementById("homeBtn")
 
 
 const gameOverSound= new Audio("sounds/gameover.mp3")
@@ -37,6 +37,7 @@ let gameOver= false
 let gameStarted= false
 let isJumping= false
 let yetiSoundPlayed= false
+let isMuted= false
 
 
 let jumpSpeed= 12
@@ -213,8 +214,6 @@ function game(){
         winSound.currentTime= 0
         winSound.play()
 
-        level++
-
         showEndScreen("YOU WIN", "You reached home safely!", true)
     }
 
@@ -271,6 +270,9 @@ function resetGame() {
 
     jumpSpeed=12
 
+    playerSpeed=3
+    yetiSpeed= 2.5 
+
     backgroundMusic.muted= isMuted
 
     player.style.left= playerX + "px"
@@ -309,6 +311,23 @@ bgMuteBtn.addEventListener("click", () =>{
 
 })
 
+homeBtn.addEventListener("click", () =>{
+
+    winSound.pause()
+    winSound.currentTime= 0
+
+    backgroundMusic.pause()
+    backgroundMusic.currentTime= 0
+
+    level= 1
+    showLevel.textContent= "Level: 1"
+
+    endScreen.style.display= "none"
+
+    startScreen.style.display= "flex"
+
+})
+
 playAgainBtn.addEventListener("click", ()=>{
 
     winSound.currentTime=0
@@ -322,6 +341,8 @@ nextLevelBtn.addEventListener("click", ()=>{
     winSound.currentTime=0
     winSound.pause()
 
+    level++ 
+
     resetGame()
 })
 
@@ -333,6 +354,6 @@ startBtn.addEventListener("click", ()=>{
     backgroundMusic.muted= isMuted
     backgroundMusic.play()
 
-    game()
+    resetGame()
 })
 
