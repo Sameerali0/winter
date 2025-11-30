@@ -21,21 +21,22 @@ const yetiSound= new Audio("sounds/yeti.mp3")
 const winSound= new Audio("sounds/win.mp3")
 
 
-let bgPosition = 0;
-let playerX= 100
+let playerX= 150
 let playerY= 0       
 let yetiX= 0
+let bgOffset = 0
 let houseX= 1100
-let playerSpeed=2
-let yetiSpeed= 1.2
+let playerSpeed=3
+let yetiSpeed= 2.5
 let isMoving= false
 let gameOver= false
 let gameStarted= false
 let isJumping= false
+let yetiSoundPlayed= false
 
 
-let jumpSpeed= 8
-let gravity= 0.35
+let jumpSpeed= 12
+let gravity= 0.3
 
 let level= 1
 
@@ -76,8 +77,7 @@ function createObstacles(){
 createObstacles()
 
 
-houseX= 400 + obstacles.length * 250 + 300
-house.style.left= houseX + "px"
+houseX= 400 + obstacles.length * 300 + 300
 
 
 function showEndScreen(result, message){
@@ -101,7 +101,7 @@ document.addEventListener("keydown", (e)=>{
         if(e.key === " " && !isJumping){
 
             isJumping= true
-            jumpSpeed= 8
+            jumpSpeed= 12
 
             jumpSound.currentTime= 0
             jumpSound.play()
@@ -126,21 +126,21 @@ function game(){
         return
     }
 
-    if(gameStarted && yetiX === 0){
+    if(gameStarted && !yetiSoundPlayed){
 
         yetiSound.play()
-
+        yetiSoundPlayed= true
     }
 
 
     if(isMoving){
 
-        bgPosition -= playerSpeed;
-        document.getElementById("game").style.backgroundPositionX= bgPosition + "px"
+    
+        bgOffset -= playerSpeed
 
-        yetiX += yetiSpeed
-        yeti.style.left= yetiX + "px"
+    }else if(gameStarted){
 
+        yetiX += yetiSpeed * 2.5
     }
 
 
@@ -164,30 +164,14 @@ function game(){
 
     player.style.bottom= playerY + "px"
 
-    houseX -= playerSpeed;
-    house.style.left= houseX + "px";
-
-    if(gameStarted){
-        if(isMoving){
-
-        yetiX += yetiSpeed
-
-        }else{
-
-            yetiX += yetiSpeed * 2
-        }
-    }
-
-
-
-    yeti.style.left= yetiX + "px"
+    yeti.style.left= (yetiX + bgOffset) + "px"
+    house.style.left= (houseX + bgOffset) + "px"
 
     for(let obs of obstacles){
 
-        obs.x -= playerSpeed;
-        obs.element.style.left= obs.x + "px"
+        obs.element.style.left= (obs.x + bgOffset) + "px"
 
-        let hitX= playerX + 120 >= obs.x && playerX <= obs.x + 50
+        let hitX= playerX + 100 >= obs.x + bgOffset && playerX <= obs.x + bgOffset + 50
 
         let hitY= playerY < 40 
 
@@ -204,7 +188,7 @@ function game(){
 
     }
         
-    if(yetiX + 50 >= playerX){
+    if(yetiX + 50 >= -bgOffset + playerX){
 
         yetiSound.currentTime= 0
         yetiSound.play()
@@ -218,7 +202,7 @@ function game(){
     }
 
 
-    if(playerX + 100 >= houseX){
+    if(-bgOffset + playerX + 100 >= houseX){
 
         winSound.currentTime= 0
         winSound.play()
@@ -270,25 +254,25 @@ createSnow()
 
 function resetGame() {
 
-    playerX= 100
     playerY= 0
     yetiX= 0
+    bgOffset=0
     gameOver= false
     isMoving= false
     isJumping= false
     gameStarted= false
 
+    jumpSpeed=12
+
+
     player.style.left= playerX + "px"
     player.style.bottom= playerY + "px"
     yeti.style.left= yetiX + "px"
 
-    obstacles=[]
-    obstaclesDiv.innerHTML=""
 
     createObstacles()
 
-    houseX= 400 + obstacles.length * 250 + 300
-    house.style.left= houseX + "px"
+    houseX= 500 + obstacles.length * 300 + 300
 
     endScreen.style.display="none"
 
