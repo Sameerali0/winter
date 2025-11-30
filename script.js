@@ -8,6 +8,7 @@ const endMessage= document.getElementById("message")
 const playAgainBtn= document.getElementById("playAgain")
 const startScreen= document.getElementById("start")
 const startBtn= document.getElementById("startBtn")
+const nextLevelBtn= document.getElementById("nextLvlBtn")
 
 
 const gameOverSound= new Audio("sounds/gameover.mp3")
@@ -80,13 +81,15 @@ createObstacles()
 houseX= 400 + obstacles.length * 300 + 300
 
 
-function showEndScreen(result, message){
+function showEndScreen(result, message, isWin= false){
 
     gameOver= true
 
     endResult.textContent= result
     endMessage.textContent= message
     endScreen.style.display= "flex"
+    nextLevelBtn.style.display= isWin ? "flex" : "none"
+
 }
 
 
@@ -209,7 +212,7 @@ function game(){
 
         level++
 
-        showEndScreen("LEVEL " + (level - 1) + " COMPLETE", "Get ready for Level " + level + "!")
+        showEndScreen("YOU WIN", "You reached home safely!", true)
     }
 
 
@@ -261,6 +264,7 @@ function resetGame() {
     isMoving= false
     isJumping= false
     gameStarted= false
+    yetiSoundPlayed= false
 
     jumpSpeed=12
 
@@ -286,6 +290,16 @@ playAgainBtn.addEventListener("click", ()=>{
 
     winSound.currentTime=0
     winSound.pause()
+
+    resetGame()
+})
+
+nextLevelBtn.addEventListener("click", ()=>{
+
+    winSound.currentTime=0
+    winSound.pause()
+
+    level++
 
     resetGame()
 })
