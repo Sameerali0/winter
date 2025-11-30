@@ -11,9 +11,12 @@ const startBtn= document.getElementById("startBtn")
 
 
 const gameOverSound= new Audio("sounds/gameover.mp3")
+gameOverSound.volume=0.5
 const backgroundMusic= new Audio("sounds/background.mp3")
 backgroundMusic.loop= true
 backgroundMusic.volume= 0.2
+const jumpSound= new Audio("sounds/jump.mp3")
+jumpSound.volume= 0.5
 
 
 let playerX= 100
@@ -92,6 +95,9 @@ document.addEventListener("keydown", (e)=>{
 
             isJumping= true
             jumpSpeed= 12
+
+            jumpSound.currentTime= 0
+            jumpSound.play()
 
         }
 })
