@@ -135,7 +135,7 @@
     background: skyblue;
     border-radius: 10px;
     cursor: pointer;
-    margin-top: 220px;
+    margin-top: 50px;
 
 }
 
@@ -248,4 +248,30 @@
 
     color: rgb(56, 158, 199);
 
+}
+
+#instructions{
+
+    color: black;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    line-height: 2;
+
+}
+
+#instructions h2{
+
+    font-size: 40px;
+    margin-bottom: 5px;
+    color: white;
+
+}
+
+#instructions ul{
+
+    list-style-type: none;
+    
 }
