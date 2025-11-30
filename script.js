@@ -11,6 +11,10 @@ const startBtn= document.getElementById("startBtn")
 
 
 const gameOverSound= new Audio("sounds/gameover.mp3")
+const backgroundMusic= new Audio("sounds/background.mp3")
+backgroundMusic.loop= true
+backgroundMusic.volume= 0.2
+
 
 let playerX= 100
 let playerY= 0       
@@ -175,7 +179,7 @@ function game(){
         gameOverSound.currentTime= 0
         gameOverSound.play()
 
-        
+
         showEndScreen("GAME OVER","Yeti Caught You!")
 
     }
@@ -267,6 +271,9 @@ playAgainBtn.addEventListener("click", ()=>{
 startBtn.addEventListener("click", ()=>{
 
     startScreen.style.display="none"
+
+    backgroundMusic.currentTime= 0
+    backgroundMusic.play()
 
     game()
 })
