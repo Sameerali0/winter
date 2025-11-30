@@ -21,27 +21,32 @@ const yetiSound= new Audio("sounds/yeti.mp3")
 const winSound= new Audio("sounds/win.mp3")
 
 
+let bgPosition = 0;
 let playerX= 100
 let playerY= 0       
 let yetiX= 0
 let houseX= 1100
-let playerSpeed=3
-let yetiSpeed= 2.5
+let playerSpeed=2
+let yetiSpeed= 1.2
 let isMoving= false
 let gameOver= false
 let gameStarted= false
 let isJumping= false
 
 
-let jumpSpeed= 12
-let gravity= 0.3
+let jumpSpeed= 8
+let gravity= 0.35
 
+let level= 1
 
 let obstacles= []
 
 function createObstacles(){
 
-    let totalObstacle = 2
+    let totalObstacle = level * 5
+
+    obstacles= []
+    obstaclesDiv.innerHTML= ""
 
     for(let i= 0; i < totalObstacle; i++){
 
@@ -53,7 +58,7 @@ function createObstacles(){
         obstacleimg.classList.add("obstacle")
 
 
-        let obstacleX= 400 + i * 350 + Math.random() *150
+        let obstacleX= 400 + i * 450 + Math.random() *150
 
 
         
@@ -96,7 +101,7 @@ document.addEventListener("keydown", (e)=>{
         if(e.key === " " && !isJumping){
 
             isJumping= true
-            jumpSpeed= 12
+            jumpSpeed= 8
 
             jumpSound.currentTime= 0
             jumpSound.play()
@@ -130,7 +135,12 @@ function game(){
 
     if(isMoving){
 
-        playerX +=playerSpeed
+        bgPosition -= playerSpeed;
+        document.getElementById("game").style.backgroundPositionX= bgPosition + "px"
+
+        yetiX += yetiSpeed
+        yeti.style.left= yetiX + "px"
+
     }
 
 
@@ -154,6 +164,9 @@ function game(){
 
     player.style.bottom= playerY + "px"
 
+    houseX -= playerSpeed;
+    house.style.left= houseX + "px";
+
     if(gameStarted){
         if(isMoving){
 
@@ -166,11 +179,13 @@ function game(){
     }
 
 
-    
+
     yeti.style.left= yetiX + "px"
 
     for(let obs of obstacles){
 
+        obs.x -= playerSpeed;
+        obs.element.style.left= obs.x + "px"
 
         let hitX= playerX + 120 >= obs.x && playerX <= obs.x + 50
 
@@ -208,7 +223,9 @@ function game(){
         winSound.currentTime= 0
         winSound.play()
 
-        showEndScreen("YOU WIN","You reached home safely!")
+        level++
+
+        showEndScreen("LEVEL " + (level - 1) + " COMPLETE", "Get ready for Level " + level + "!")
     }
 
 
@@ -261,9 +278,6 @@ function resetGame() {
     isJumping= false
     gameStarted= false
 
-    jumpSpeed= 12
-    gravity= 0.3
-
     player.style.left= playerX + "px"
     player.style.bottom= playerY + "px"
     yeti.style.left= yetiX + "px"
@@ -288,7 +302,7 @@ playAgainBtn.addEventListener("click", ()=>{
 
     winSound.currentTime=0
     winSound.pause()
-    
+
     resetGame()
 })
 

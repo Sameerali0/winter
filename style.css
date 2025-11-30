@@ -12,6 +12,7 @@
     background-size: cover;
     overflow: hidden;
     position: relative;
+    background-position-x: 0;
 
 }
 
@@ -42,7 +43,7 @@
     width: auto;
     height: 300px;
     bottom: 0px;
-    left: 1100px;
+    /* left: 1100px; */
     right: 50px;
 
 
