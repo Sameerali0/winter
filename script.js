@@ -17,6 +17,7 @@ backgroundMusic.loop= true
 backgroundMusic.volume= 0.2
 const jumpSound= new Audio("sounds/jump.mp3")
 jumpSound.volume= 0.5
+const yetiSound= new Audio("sounds/yeti.mp3")
 
 
 let playerX= 100
@@ -119,6 +120,13 @@ function game(){
         return
     }
 
+    if(gameStarted && yetiX === 0){
+
+        yetiSound.play()
+
+    }
+
+
     if(isMoving){
 
         playerX +=playerSpeed
@@ -181,6 +189,9 @@ function game(){
     }
         
     if(yetiX + 50 >= playerX){
+
+        yetiSound.currentTime= 0
+        yetiSound.play()
 
         gameOverSound.currentTime= 0
         gameOverSound.play()
