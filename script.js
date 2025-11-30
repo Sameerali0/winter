@@ -18,6 +18,7 @@ backgroundMusic.volume= 0.2
 const jumpSound= new Audio("sounds/jump.mp3")
 jumpSound.volume= 0.5
 const yetiSound= new Audio("sounds/yeti.mp3")
+const winSound= new Audio("sounds/win.mp3")
 
 
 let playerX= 100
@@ -204,6 +205,9 @@ function game(){
 
     if(playerX + 100 >= houseX){
 
+        winSound.currentTime= 0
+        winSound.play()
+
         showEndScreen("YOU WIN","You reached home safely!")
     }
 
@@ -282,6 +286,9 @@ function resetGame() {
 
 playAgainBtn.addEventListener("click", ()=>{
 
+    winSound.currentTime=0
+    winSound.pause()
+    
     resetGame()
 })
 
