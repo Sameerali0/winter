@@ -4,3 +4,6 @@
 - HTML
 - CSS
 - JavaScript
+
+## Screenshot
+![Escape From Yeti Screenshot](images/Screenshot.png)
